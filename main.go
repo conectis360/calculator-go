@@ -6,12 +6,7 @@ import (
 )
 
 func main() {
-	const pi float64 = 3.14
 	var operacao float64
-	var number1 float64
-	var number2 float64
-	var result float64
-	var numbersToOperate int
 	arrayOfNumbers := []float64{}
 
 	fmt.Println("Qual expressão básica (até 2 números) você deseja executar?")
@@ -23,33 +18,55 @@ func main() {
 
 	switch operacao {
 	case 1:
-		numbersToOperate = howManyNumbers()
+		numbersToOperate, err := howManyNumbers()
+		if err != nil {
+			fmt.Print(err)
+			break
+		}
 		fmt.Println(numbersToOperate)
 		arrayOfNumbers = repeatReceiver(numbersToOperate)
 
 		fmt.Println(sum(arrayOfNumbers))
 	case 2:
-		result = minus(number1, number2)
-		fmt.Println(result)
+		numbersToOperate, err := howManyNumbers()
+		if err != nil {
+			fmt.Print(err)
+			break
+		}
+		fmt.Println(numbersToOperate)
+		arrayOfNumbers = repeatReceiver(numbersToOperate)
+		fmt.Println(minus(arrayOfNumbers))
 	case 3:
-		result = multiply(number1, number2)
-		fmt.Println(result)
+		numbersToOperate, err := howManyNumbers()
+		if err != nil {
+			fmt.Print(err)
+			break
+		}
+		fmt.Println(numbersToOperate)
+		arrayOfNumbers = repeatReceiver(numbersToOperate)
+		fmt.Println(multiply(arrayOfNumbers))
 	case 4:
-		result = divide(number1, number2)
-		fmt.Println(result)
+		numbersToOperate, err := howManyNumbers()
+		if err != nil {
+			fmt.Print(err)
+			break
+		}
+		fmt.Println(numbersToOperate)
+		arrayOfNumbers = repeatReceiver(numbersToOperate)
+		fmt.Println(divide(arrayOfNumbers))
 	default:
-		fmt.Println("Opção Inválida, encerrando programa.")
+		fmt.Println("Erro: opção Inválida, encerrando programa.")
 	}
 }
 
-func howManyNumbers() int {
+func howManyNumbers() (int, error) {
 	var number int
 	fmt.Println("Digite com quantos algarismos você gostaria de calcular?")
 	_, err := fmt.Scanln(&number)
 	if err != nil {
-
+		return 0, errors.New("digite apenas a quantidade de algoritmos por favor")
 	}
-	return number
+	return number, err
 }
 
 func repeatReceiver(quantity int) []float64 {
@@ -88,14 +105,26 @@ func sum(arrayOfNumbers []float64) float64 {
 	return number
 }
 
-func minus(number1 float64, number2 float64) float64 {
-	return number1 - number2
+func minus(arrayOfNumbers []float64) float64 {
+	var number float64
+	for i := range len(arrayOfNumbers) {
+		number += arrayOfNumbers[i]
+	}
+	return number
 }
 
-func multiply(number1 float64, number2 float64) float64 {
-	return number1 * number2
+func multiply(arrayOfNumbers []float64) float64 {
+	var number float64
+	for i := range len(arrayOfNumbers) {
+		number *= arrayOfNumbers[i]
+	}
+	return number
 }
 
-func divide(number1 float64, number2 float64) float64 {
-	return number1 / number2
+func divide(arrayOfNumbers []float64) float64 {
+	var number float64
+	for i := range len(arrayOfNumbers) {
+		number /= arrayOfNumbers[i]
+	}
+	return number
 }
