@@ -3,11 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
 )
 
 func main() {
 	var operacao float64
-	arrayOfNumbers := []float64{}
 
 	fmt.Println("Qual expressão básica (até 2 números) você deseja executar?")
 	fmt.Println("Digite 1 para somar")
@@ -18,71 +18,63 @@ func main() {
 
 	switch operacao {
 	case 1:
-		numbersToOperate, err := howManyNumbers()
-		if err != nil {
-			fmt.Print(err)
-			break
-		}
-		fmt.Println(numbersToOperate)
-		arrayOfNumbers = repeatReceiver(numbersToOperate)
-
-		fmt.Println(sum(arrayOfNumbers))
+		handleOperation(sum)
 	case 2:
-		numbersToOperate, err := howManyNumbers()
-		if err != nil {
-			fmt.Print(err)
-			break
-		}
-		fmt.Println(numbersToOperate)
-		arrayOfNumbers = repeatReceiver(numbersToOperate)
-		fmt.Println(minus(arrayOfNumbers))
+		handleOperation(minus)
 	case 3:
-		numbersToOperate, err := howManyNumbers()
-		if err != nil {
-			fmt.Print(err)
-			break
-		}
-		fmt.Println(numbersToOperate)
-		arrayOfNumbers = repeatReceiver(numbersToOperate)
-		fmt.Println(multiply(arrayOfNumbers))
+		handleOperation(multiply)
 	case 4:
-		numbersToOperate, err := howManyNumbers()
-		if err != nil {
-			fmt.Print(err)
-			break
-		}
-		fmt.Println(numbersToOperate)
-		arrayOfNumbers = repeatReceiver(numbersToOperate)
-		fmt.Println(divide(arrayOfNumbers))
+		handleOperationWithError(divide)
 	default:
 		fmt.Println("Erro: opção Inválida, encerrando programa.")
 	}
+}
+
+func handleOperationWithError(operation func([]float64) (float64, error)) {
+	numbersToOperate, err := howManyNumbers()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	arrayOfNumbers := repeatReceiver(numbersToOperate)
+	result, err := operation(arrayOfNumbers)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("Result:", result)
+}
+
+func handleOperation(operation func([]float64) float64) {
+	numbersToOperate, err := howManyNumbers()
+	if err != nil {
+		fmt.Print(err)
+		return
+	}
+	arrayOfNumbers := repeatReceiver(numbersToOperate)
+	result := operation(arrayOfNumbers)
+	fmt.Println(result)
 }
 
 func howManyNumbers() (int, error) {
 	var number int
 	fmt.Println("Digite com quantos algarismos você gostaria de calcular?")
 	_, err := fmt.Scanln(&number)
-	if err != nil {
-		return 0, errors.New("digite apenas a quantidade de algoritmos por favor")
+	if err != nil || number <= 0 {
+		return 0, errors.New("digite numeros positivos por favor")
 	}
-	return number, err
+	return number, nil
 }
 
 func repeatReceiver(quantity int) []float64 {
-	var number int = 0
-	var number1 float64
-	var erro error
-	arrayOfNumbers := []float64{}
-	for number <= quantity {
-		number1, erro = receiveNumbers()
-		if erro == nil {
-			arrayOfNumbers = append(arrayOfNumbers, number1)
-		} else {
-			fmt.Println(erro)
-			break
+	arrayOfNumbers := make([]float64, 0, quantity) // Pre-allocate slice
+	for i := 0; i < quantity; i++ {
+		number, err := receiveNumbers()
+		if err != nil {
+			fmt.Println(err)
+			return arrayOfNumbers
 		}
-		number++
+		arrayOfNumbers = append(arrayOfNumbers, number)
 	}
 	return arrayOfNumbers
 }
@@ -90,41 +82,45 @@ func repeatReceiver(quantity int) []float64 {
 func receiveNumbers() (float64, error) {
 	var number float64
 	fmt.Println("Digite o valor?")
-	_, err := fmt.Scanln(&number) // scan has a double return, an integer and a error, using err to return a error
+	_, err := fmt.Scanln(&number)
 	if err != nil {
-		return 0, errors.New("por favor digite um numero") // return 0 and the error for the caller (main function in our case)
+		log.Println("LOG: ", err)
+		return 0, errors.New("por favor digite um numero")
 	}
-	return number, nil // no errors, return the scanned number
+	return number, nil
 }
 
 func sum(arrayOfNumbers []float64) float64 {
-	var number float64
-	for i := range len(arrayOfNumbers) {
-		number += arrayOfNumbers[i]
+	var result float64 = 0
+	for _, num := range arrayOfNumbers {
+		result += num
 	}
-	return number
+	return result
 }
 
 func minus(arrayOfNumbers []float64) float64 {
-	var number float64
-	for i := range len(arrayOfNumbers) {
-		number += arrayOfNumbers[i]
+	result := arrayOfNumbers[0]
+	for _, num := range arrayOfNumbers[1:] {
+		result -= num
 	}
-	return number
+	return result
 }
 
 func multiply(arrayOfNumbers []float64) float64 {
-	var number float64
-	for i := range len(arrayOfNumbers) {
-		number *= arrayOfNumbers[i]
+	result := arrayOfNumbers[0]
+	for _, num := range arrayOfNumbers[1:] {
+		result *= num
 	}
-	return number
+	return result
 }
 
-func divide(arrayOfNumbers []float64) float64 {
-	var number float64
-	for i := range len(arrayOfNumbers) {
-		number /= arrayOfNumbers[i]
+func divide(arrayOfNumbers []float64) (float64, error) {
+	result := arrayOfNumbers[0]
+	for _, num := range arrayOfNumbers[1:] {
+		if num == 0 {
+			return 0, errors.New("não é possível dividir por zero")
+		}
+		result /= num
 	}
-	return number
+	return result, nil
 }
