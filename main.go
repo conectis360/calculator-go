@@ -45,7 +45,10 @@ func main() {
 func howManyNumbers() int {
 	var number int
 	fmt.Println("Digite com quantos algarismos você gostaria de calcular?")
-	fmt.Scanln(&number)
+	_, err := fmt.Scanln(&number)
+	if err != nil {
+
+	}
 	return number
 }
 
@@ -58,6 +61,9 @@ func repeatReceiver(quantity int) []float64 {
 		number1, erro = receiveNumbers()
 		if erro == nil {
 			arrayOfNumbers = append(arrayOfNumbers, number1)
+		} else {
+			fmt.Println(erro)
+			break
 		}
 		number++
 	}
@@ -67,11 +73,11 @@ func repeatReceiver(quantity int) []float64 {
 func receiveNumbers() (float64, error) {
 	var number float64
 	fmt.Println("Digite o valor?")
-	value, err := fmt.Scanln(&number) // Check if input parsing fails
+	_, err := fmt.Scanln(&number) // scan has a double return, an integer and a error, using err to return a error
 	if err != nil {
-		return 0, errors.New("math: digite um numero")
+		return 0, errors.New("por favor digite um numero") // return 0 and the error for the caller (main function in our case)
 	}
-	return number, nil
+	return number, nil // no errors, return the scanned number
 }
 
 func sum(arrayOfNumbers []float64) float64 {
