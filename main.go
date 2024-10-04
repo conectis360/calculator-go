@@ -8,26 +8,9 @@ import (
 
 func main() {
 	var operacao float64
-
-	fmt.Println("Qual expressão básica (até 2 números) você deseja executar?")
-	fmt.Println("Digite 1 para somar")
-	fmt.Println("Digite 2 para subtrair")
-	fmt.Println("Digite 3 para multiplicar")
-	fmt.Println("Digite 4 para dividir")
+	displayMenu()
 	fmt.Scanln(&operacao)
 
-	switch operacao {
-	case 1:
-		handleOperation(sum)
-	case 2:
-		handleOperation(minus)
-	case 3:
-		handleOperation(multiply)
-	case 4:
-		handleOperationWithError(divide)
-	default:
-		fmt.Println("Erro: opção Inválida, encerrando programa.")
-	}
 }
 
 func handleOperationWithError(operation func([]float64) (float64, error)) {
@@ -123,4 +106,39 @@ func divide(arrayOfNumbers []float64) (float64, error) {
 		result /= num
 	}
 	return result, nil
+}
+
+func displayMenu() {
+	fmt.Println("Qual expressão básica (até 2 números) você deseja executar?")
+	fmt.Println("Digite 1 para somar")
+	fmt.Println("Digite 2 para subtrair")
+	fmt.Println("Digite 3 para multiplicar")
+	fmt.Println("Digite 4 para dividir")
+}
+
+func getOperation() (int, error) {
+	var operacacao int
+	fmt.Print("Selecione uma Operação: ")
+	_, err := fmt.Scanln(&operacacao)
+
+	if err != nil || operacacao < 1 || operacacao > 4 {
+		return 0, errors.New("O numero da operação deve ser 1, 2, 3 ou 4.")
+	}
+
+	return operacacao, nil
+}
+
+func selectOperation(operacao int, numbers []float64) (float64, error) {
+	switch operacao {
+	case 1:
+		return handleOperation(sum)
+	case 2:
+		return handleOperation(minus)
+	case 3:
+		return handleOperation(multiply)
+	case 4:
+		return handleOperationWithError(divide)
+	default:
+		return 0, errors.New("operação inválida")
+	}
 }
