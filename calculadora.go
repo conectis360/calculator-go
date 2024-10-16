@@ -6,12 +6,13 @@ import (
 	"log"
 )
 
+/*
 func main() {
 	var operacao float64
 	displayMenu()
 	fmt.Scanln(&operacao)
-
 }
+*/
 
 func handleOperationWithError(operation func([]float64) (float64, error)) {
 	numbersToOperate, err := howManyNumbers()
