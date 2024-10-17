@@ -1,5 +1,6 @@
 package main
 
+/*
 import "fmt"
 
 func main() {
@@ -14,3 +15,4 @@ func main() {
 		fmt.Println("You entered the empress room! and looks like she has a thing for yours.. ;)")
 	}
 }
+*/
