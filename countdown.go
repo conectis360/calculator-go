@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 	"time"
@@ -14,4 +15,4 @@ func main() {
 		count--
 	}
 	fmt.Println("Liftoff!")
-}
+}*/
