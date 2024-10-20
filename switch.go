@@ -1,7 +1,6 @@
 package main
 
-import "fmt"
-
+/*
 func main() {
 	var room = "lake"
 
@@ -14,4 +13,4 @@ func main() {
 	case room == "underwater":
 		fmt.Println("The water is freezing cold")
 	}
-}
+}*/
