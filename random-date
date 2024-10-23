@@ -5,6 +5,7 @@ import (
 
 var era = "AD"
 
+/*
 func main() {
 	year := 2018
 	month := rand.Intn(12) + 1
@@ -19,4 +20,4 @@ func main() {
 
 	day := rand.Intn(daysInMonth) + 1
 	fmt.Println(era, year, month, day)
-}
+}*/
