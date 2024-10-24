@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-)
-
+/*
 var era = "AD"
 
 func main() {
@@ -29,4 +25,4 @@ func main() {
 		fmt.Printf("date %d \n", x)
 		fmt.Println(era, year, month, day)
 	}
-}
+}*/
