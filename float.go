@@ -1,5 +1,6 @@
 package main
 
+/*
 import "fmt"
 
 func main() {
@@ -11,3 +12,4 @@ func main() {
 	piggyBank += 0.2
 	fmt.Println(piggyBank)
 }
+*/
