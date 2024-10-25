@@ -11,4 +11,6 @@ func main() {
 	fmt.Printf("%f\n", third)
 	fmt.Printf("%.3f\n", third)
 	fmt.Printf("%4.2f\n", third) // 4. width 2f precision, which specifies how many digits should appear after the decimal point
+	fmt.Printf("%05.2f\n", third)
+	fmt.Printf("%06.2f\n", third)
 }
