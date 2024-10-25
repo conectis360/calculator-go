@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-)
-
+/*
 func main() {
 	const tripTypeRound = "Round-trip"
 	const tripTypeOne = "One-way"
@@ -23,3 +19,4 @@ func main() {
 		fmt.Println(" | ", adventures, "    | ", days, " | ", tripTypeOne, " | ", values, " | ")
 	}
 }
+*/
