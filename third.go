@@ -1,5 +1,7 @@
 package main
 
+/*
+
 import (
 	"fmt"
 )
@@ -14,3 +16,4 @@ func main() {
 	fmt.Printf("%05.2f\n", third)
 	fmt.Printf("%06.2f\n", third)
 }
+*/
