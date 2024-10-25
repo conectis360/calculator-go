@@ -1,5 +1,7 @@
 package main
 
+/*
+
 import (
 	"fmt"
 	"math"
@@ -12,3 +14,6 @@ func main() {
 	fmt.Println(pi64)
 	fmt.Println(pi32)
 }
+
+
+*/
