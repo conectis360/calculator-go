@@ -1,5 +1,6 @@
 package main
 
+/*
 import "fmt"
 
 func main() {
@@ -7,3 +8,4 @@ func main() {
 	fmt.Print((celsius/5.0*9.0)+32, "° F \n")
 	fmt.Print((5.0/9.0*celsius)+32, "° F \n")
 }
+*/
