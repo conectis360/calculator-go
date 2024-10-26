@@ -1,5 +1,6 @@
 package main
 
+/*
 import "fmt"
 
 func main() {
@@ -7,3 +8,4 @@ func main() {
 	fahrenheit := (celsius * 9.0 / 5.0) + 32.0
 	fmt.Print(fahrenheit, "° F")
 }
+*/
