@@ -129,6 +129,7 @@ func getOperation() (int, error) {
 	return operacacao, nil
 }
 
+/*
 func selectOperation(operacao int, numbers []float64) (float64, error) {
 	switch operacao {
 	case 1:
@@ -143,3 +144,4 @@ func selectOperation(operacao int, numbers []float64) (float64, error) {
 		return 0, errors.New("operação inválida")
 	}
 }
+*/
