@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 	"math/rand"
@@ -17,3 +18,4 @@ func main() {
 	}
 	fmt.Printf("Ok now I do have %0.2f", piggyBank)
 }
+*/
