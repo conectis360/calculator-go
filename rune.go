@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 )
@@ -22,3 +23,4 @@ func main() {
 	acute := 'é'
 	fmt.Printf("%c %[1]v\n", acute)
 }
+*/
