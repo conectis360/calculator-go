@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 )
@@ -12,3 +13,5 @@ func main() {
 	const years = distance / lightSpeed / secondsPerDay / daysPerYear
 	fmt.Println("Canis Major Dwarf Galaxy is", years, "light years away.")
 }
+
+*/
