@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"fmt"
 )
@@ -13,3 +14,4 @@ func main() {
 	fmt.Println("I am", marsAge, "years old on Mars.")
 	fmt.Println(int(earthDays))
 }
+*/
